@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro"
+import AsideMenu from "@/components/AsideMenu.astro"
+
+import { Player } from '@/components/react/Player'
+const { title } = Astro.props;
+---
+<Layout title={title}>
+  <section class="principalSetc relative h-screen p-2 m-0 gap-2 hidden">
+    <AsideMenu />
+    <main class="[grid-area:main] rounded-lg bg-zinc-900 overflow-y-auto">
+      <slot />
+    </main>
+    <footer class="[grid-area:player]">
+      <Player client:load transition:name='media-player' transition:persist />
+    </footer>
+  </section>
+</Layout>

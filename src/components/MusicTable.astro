@@ -1,0 +1,43 @@
+---
+import { type Song } from '@/lib/data'
+
+interface Props {
+  songs: Song[]
+}
+
+const { songs } = Astro.props
+---
+
+<table class="table-auto text-left min-w-full divide-y divide-gray-500/20">
+  <thead>
+    <tr class="text-gray-300 text-sm">
+      <th class="px-4 py-2 font-light">#</th>
+      <th class="px-4 py-2 font-light">Title</th>
+      <th class="px-4 py-2 font-light">Artist</th>
+      <th class="px-4 py-2 font-light">Length</th>
+      <th class="px-4 py-2 font-light">ALbum</th>
+    </tr>
+  </thead>
+  <tbody>
+    {songs.map((song, index) => (
+      <tr class="text-gray-300 text-sm font-light hover:bg-white/10 transition duration-300">
+        <td class="px-4 py-2 rounded-tl-lg rounded-bl-lg w-5">{index + 1}</td>
+        <td class="flex gap-3 px-4 py-2">
+          <picture>
+            <img
+              src={song.image}
+              alt={`Cover of ${song.album} by Yo`}
+              class="w-11 h-11 rounded-md object-cover"
+            />
+          </picture>
+          <div class="flex flex-col">
+            <h3 class="text-white text-base font-normal">{song.title}</h3>
+            <span>{song.artists.join(", ")}</span>
+          </div>
+        </td>
+        <td class="px-4 py-2">{song.album}</td>
+        <td class="px-4 py-2 rounded-tr-lg rounded-br-lg">{song.duration}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>

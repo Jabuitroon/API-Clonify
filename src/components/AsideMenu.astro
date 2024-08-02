@@ -1,0 +1,46 @@
+---
+import AsideNavItem from "@components/AsideNavItem.astro"
+import { FormFilter } from "@components/react/FormFilter.jsx"
+
+import { Icon } from "@static/icons"
+---
+<aside class="[grid-area:aside] navAside relative gap-2">
+  <div class="px-3 py-2 text-white bg-zinc-900 rounded-lg">
+    <ul class="ul-nav flex flex-col h-full w-full items-stretch">
+      <AsideNavItem href="/">
+        <Icon iconData="home" alt="home icon" />
+        Home
+      </AsideNavItem>
+      <AsideNavItem href="/">
+        <Icon iconData="search" alt="search icon" />
+        Search
+      </AsideNavItem>
+    </ul>
+  </div>
+  <div class="library bg-blue-950 text-zinc-400 rounded-lg p-2 relative">
+    <header class="flex items-center w-full h-12 px-4 py-2 justify-between">
+      <div class="flex gap-2">
+        <Icon iconData="library" alt="library icon" />
+        Tu Biblioteca
+      </div>
+      <div class="header-btns flex gap-2">
+        <Icon iconData="add" alt="add icon" />
+        <Icon iconData="arrow" alt="arrow icon" />
+      </div>
+    </header>
+      <ul class="badges-container mx-4 my-2 h-8 justify-evenly [&>li]:rounded-2xl flex [&>li]:py-1 [&>li]:px-3 [&>li]:text-[0.875rem] [&>li]:bg-zinc-800 [&>li]:inline-flex [&>li]:items-center">
+        <li>Listas</li>
+        <li>Artistas</li>
+        <li>Álbum</li>
+      </ul>
+    <FormFilter client:load transition:persist />
+  </div>
+</aside>
+
+<style>
+  .navAside{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 7rem 1fr;
+  }
+</style>

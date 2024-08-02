@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AsideMenu from "../components/AsideMenu.astro";
+
+import { Player } from '../components/react/Player'
+
+import PlayListContainer from "../components/PlayListContainer.astro";
+---
+<Layout title="Welcome to Spooty.">
+  <section class="principalSetc relative h-screen p-2 m-0 gap-2 hidden">
+    <AsideMenu />
+    <main class="[grid-area:main] rounded-lg bg-zinc-900 overflow-y-auto">
+      <PlayListContainer />
+    </main>
+    <footer class="[grid-area:player]">
+      <!-- Un componente de Astro que persiste ante un cambio de página -->
+      <Player client:load transition:name='media-player' transition:persist />
+    </footer>
+  </section>
+</Layout>
