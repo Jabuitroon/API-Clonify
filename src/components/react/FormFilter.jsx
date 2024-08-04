@@ -3,6 +3,8 @@ import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import debounce from 'just-debounce-it'
 import { playlists } from '../../lib/data'
 import { Decisiones } from '../react/SideMenuCard.jsx'
+import { PlaylistsFavoritesProvider } from '../react/context/playlistsFavorites.jsx'
+
 import { Icon } from '@static/icons'
 export function FormFilter () {
   const [query, setQuery] = useState('')
@@ -79,20 +81,22 @@ export function FormFilter () {
   }
 
   return (
-    <div className='flex flex-col'>
-      <nav className='flex px-4 py-2 items-center overflow-hidden'>
-        <div className='flex'>
-          <Icon iconData='search' alt='search icon' />
-          <form className='form flex items-center py-1 mx-2' onSubmit={handleSubmit}>
-            <input className='w-[150%] px-2 py-0 bg-slate-300' onChange={handleChange} value={query} name='query' placeholder='Buscar en tu biblioteca' />
-          </form>
-        </div>
-        <div className='flex gap-2'>
-          <p className='inline-flex items-center'>Recientes</p>
-          <Icon iconData='expand' alt='expand icon' />
-        </div>
-      </nav>
-      <Decisiones playlists={mapped} />
-    </div>
+    <PlaylistsFavoritesProvider>
+      <div className='flex flex-col'>
+        <nav className='flex px-4 py-2 items-center overflow-hidden'>
+          <div className='flex'>
+            <Icon iconData='search' alt='search icon' />
+            <form className='form flex items-center py-1 mx-2' onSubmit={handleSubmit}>
+              <input className='w-[150%] px-2 py-0 bg-slate-300' onChange={handleChange} value={query} name='query' placeholder='Buscar en tu biblioteca' />
+            </form>
+          </div>
+          <div className='flex gap-2'>
+            <p className='inline-flex items-center'>Recientes</p>
+            <Icon iconData='expand' alt='expand icon' />
+          </div>
+        </nav>
+        <Decisiones playlists={mapped} />
+      </div>
+    </PlaylistsFavoritesProvider>
   )
 }

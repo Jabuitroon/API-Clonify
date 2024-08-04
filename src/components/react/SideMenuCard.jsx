@@ -1,3 +1,5 @@
+import { useAddFavorites } from "./hooks/addFavorites"
+
 export function MostrarResultados ({ playlists }) {
   return (
     <ul className='playlists'>
@@ -23,11 +25,14 @@ export function MostrarResultados ({ playlists }) {
 }
 
 export function Decisiones ({ playlists }) {
-  const hasMovies = playlists?.length > 0
-
+  const { fav } = useAddFavorites()
+  const hasFind = playlists?.length > 0
+  console.log(fav);
+  
   return (
-    hasMovies
+    hasFind
       ? <MostrarResultados playlists={playlists} />
-      : <p>F</p>
+      : <MostrarResultados playlists={fav} />
+      
   )
 }
